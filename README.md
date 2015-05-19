@@ -46,7 +46,7 @@ I went with the former.
 - Removed Default context listener from the spring context xml. 
 
 This is important! 
-Since spring boot will provide one you will get an "Error lsitener Start" exception if you do not. 
+Since spring boot will provide one you will get an "Error listener Start" exception if you do not. 
 ```xml
     <!-- This was removed from web.xml
     <listener>
