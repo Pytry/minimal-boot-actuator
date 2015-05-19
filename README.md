@@ -3,7 +3,7 @@ A Spring Boot application with minimal boot configuration.
 Shows how to convert an older spring application to spring boot.
 Original source: http://www.mkyong.com/spring-mvc/gradle-spring-mvc-web-project-example/
 
-## Conversion Process
+# Conversion Process
 
 - Add a Java Configuration file annotated with @SpringBootApplication
 
@@ -13,10 +13,6 @@ Original source: http://www.mkyong.com/spring-mvc/gradle-spring-mvc-web-project-
     import org.springframework.boot.builder.SpringApplicationBuilder;
     import org.springframework.boot.context.web.SpringBootServletInitializer;
 
-    /**
-    * Created by Keith Hoopes on 5/19/2015.
-    * Copyright Bear River Mutual 2015.
-    */
     @SpringBootApplication
     public class Application extends SpringBootServletInitializer {
         @Override
