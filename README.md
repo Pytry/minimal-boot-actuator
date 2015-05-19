@@ -6,7 +6,7 @@ Original source: http://www.mkyong.com/spring-mvc/gradle-spring-mvc-web-project-
 # Conversion Process
 
 - Add a Java Configuration file annotated with @SpringBootApplication
-
+```Java
     package llc;
 	
     import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,13 +20,15 @@ Original source: http://www.mkyong.com/spring-mvc/gradle-spring-mvc-web-project-
             return application.sources(Application.class);
         }
     }
+```
 
 - Add the Application configuration file as a bean to the traditional xml configuration ( added it just after the context scan).
-
+```xml
     <bean name="applicationConfiguration" class="llc.Application"/>
+```
 
 - Move view resolvers into Application java configuration.
-
+```Java
     @Bean
     public InternalResourceViewResolver internalResourceViewResolver() throws ClassNotFoundException {
         InternalResourceViewResolver view = new InternalResourceViewResolver();
@@ -36,7 +38,7 @@ Original source: http://www.mkyong.com/spring-mvc/gradle-spring-mvc-web-project-
         
         return view;
     }
-
+```
 Alternatively, if you can decide add the prefix and suffix to application.properties.
 You can then inject them with @Value in your application, or delete it entirely and just use the provided spring boot view resolver.
 I went with the former.
@@ -45,7 +47,7 @@ I went with the former.
 
 This is important! 
 Since spring boot will provide one you will get an "Error lsitener Start" exception if you do not. 
-
+```xml
     <!-- This was removed from web.xml
     <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -55,9 +57,9 @@ Since spring boot will provide one you will get an "Error lsitener Start" except
     <param-value>/WEB-INF/dispatcher-servlet.xml</param-value>
     </context-param>
     -->
-
+```
 - Add the plugin to your build script dependancies (I was using gradle)
-
+```gradle
     buildscript{
         repositories {
             mavenLocal()
@@ -67,13 +69,13 @@ Since spring boot will provide one you will get an "Error lsitener Start" except
             classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.2.3.RELEASE'
         }
     }
-
+```
 - Add a mainClassName property to the build file, and set to an empty String (indicates not to create an executable).
-	
+```gradle	
     mainClassName=''
-	
+```	
 - Modify dependacies for spring boot actuator
-	
+```	
     dependencies {
     
         compile("org.springframework:spring-webmvc:4.1.6.RELEASE")
@@ -84,3 +86,4 @@ Since spring boot will provide one you will get an "Error lsitener Start" except
         providedCompile("javax.servlet:servlet-api:2.5")
         providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
     }
+```
